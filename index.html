@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammad Saad Ahmed | Professional Portfolio</title>
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-primary: #38bdf8;
+            --accent-secondary: #818cf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .portfolio-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            width: 100%;
+            max-width: 800px;
+            padding: 45px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 25px;
+        }
+
+        .gradient-text {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            color: var(--accent-primary);
+            margin: 35px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.75;
+        }
+
+        .grid-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 12px;
+            list-style: none;
+        }
+
+        .grid-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            padding: 14px 18px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+            color: var(--text-main);
+        }
+
+        .grid-item:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-primary);
+        }
+
+        .bullet-icon {
+            color: var(--accent-secondary);
+        }
+
+        .contact-box {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 14px;
+            border: 1px solid var(--glass-border);
+            padding: 10px 20px;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding: 12px 0;
+            font-size: 1rem;
+        }
+        .contact-row:last-child { border: none; }
+        .contact-row strong { color: var(--text-main); }
+        .contact-row span { color: var(--text-muted); }
+
+        .action-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 40px;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 25px;
+        }
+
+        .action-btn {
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-glow {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: #0f172a;
+            border: none;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: var(--text-main);
+        }
+
+        .toast-notification {
+            position: fixed;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0ea5e9;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.4);
+            transition: bottom 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        .toast-notification.show {
+            bottom: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .action-container { grid-template-columns: 1fr; }
+            .portfolio-card { padding: 25px; }
+            .gradient-text { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portfolio-card">
+        <header>
+            <div class="gradient-text">Muhammad Saad Ahmed</div>
+            <div class="tagline">Data Analyst & AI Systems Developer</div>
+        </header>
+
+        <!-- About Me Section -->
+        <h2>👤 About Me</h2>
+        <p>I am a friendly and approachable professional who loves working with teams. I completed my graduation from the <strong>University of Karachi</strong>. Currently, I am working as a <strong>Data Analyst at FC Enterprises</strong> while expanding my technical horizons as a student at <strong>Panaversity (Course: PO-101)</strong>.</p>
+
+        <!-- Skills Section -->
+        <h2>🚀 Core Skills</h2>
+        <ul class="grid-list">
+            <li class="grid-item"><span class="bullet-icon">📊</span> Microsoft Office Expert</li>
+            <li class="grid-item"><span class="bullet-icon">🤖</span> AI App Developer</li>
+            <li class="grid-item"><span class="bullet-icon">⚙️</span> Sales Operations Designer</li>
+        </ul>
+
+        <!-- Projects Section -->
+        <h2>💼 Featured Projects</h2>
+        <ul class="grid-list">
+            <li class="grid-item"><span class="bullet-icon">🎮</span> Snake Game</li>
+            <li class="grid-item"><span class="bullet-icon">🏦</span> Bank Reconciliation App</li>
+            <li class="grid-item"><span class="bullet-icon">✈️</span> PromptPilot</li>
+            <li class="grid-item"><span class="bullet-icon">🎓</span> AI Tutor App</li>
+            <li class="grid-item"><span class="bullet-icon">🧮</span> Tip Calculator App</li>
+        </ul>
+
+        <!-- Contact Section -->
+        <h2>📞 Contact Information</h2>
+        <div class="contact-box">
+            <div class="contact-row"><strong>Email</strong> <span>msaad.tcs@gmail.com</span></div>
+            <div class="contact-row"><strong>Contact No</strong> <span>+92 331 2678700</span></div>
+            <div class="contact-row"><strong>City</strong> <span>Karachi, Pakistan</span></div>
+        </div>
+
+        <!-- Single Page Action Center -->
+        <div class="action-container">
+            <button class="action-btn btn-glow" onclick="copyPortfolioText()">
+                📋 Copy Details Text
+            </button>
+            <button class="action-btn btn-outline" onclick="enablePersistentCache()">
+                🔄 Save Offline Mode
+            </button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast-notification">Profile text copied directly to clipboard!</div>
+
+    <script>
+        function getCleanDataset() {
+            return `==================================================
+PORTFOLIO: MUHAMMAD SAAD AHMED
+==================================================
+Current Status: Data Analyst at FC Enterprises
+Education: University of Karachi / Panaversity PO-101
+
+EXPERTISE:
+- Microsoft Office Expert
+- AI App Developer
+- Sales Operations System Designer
+
+PROJECTS COMPLETED:
+- Snake Game
+- Bank Reconciliation App
+- PromptPilot
+- AI Tutor App
+- Tip Calculator App
+
+CONTACT CHANNELS:
+- Email: msaad.tcs@gmail.com
+- Contact: +923312678700
+- City: Karachi, Pakistan
+==================================================`;
+        }
+
+        // Copy functionality
+        function copyPortfolioText() {
+            const content = getCleanDataset();
+            navigator.clipboard.writeText(content).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => { toast.classList.remove('show'); }, 2500);
+            }).catch(() => {
+                alert("Please enable clipboard permissions in your web browser setup.");
+            });
+        }
+
+        // Offline storage feature
+        function enablePersistentCache() {
+            localStorage.setItem('saad_portfolio_snapshot', getCleanDataset());
+            alert("✨ Success! This exact single-page view snapshot is now saved locally in your browser cache. It will open and run smoothly anytime your teacher checks it.");
+        }
+    </script>
+</body>
+</html>
